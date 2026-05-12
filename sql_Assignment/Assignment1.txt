@@ -1,0 +1,84 @@
+Name: Mohini Dharmadhikari
+Assignment1-SQL 
+(Q1).
+ans: mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| practice           |
+| sys                |
++--------------------+
+5 rows in set (0.04 sec)
+
+(Q2).
+ans: mysql> create table countries(
+    -> country_id int,country_name varchar(20),
+    -> region_id int);
+Query OK, 0 rows affected (0.13 sec)
+
+mysql> desc countries;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| country_id   | int         | YES  |     | NULL    |       |
+| country_name | varchar(20) | YES  |     | NULL    |       |
+| region_id    | int         | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+
+Q3.
+ans:mysql> create table jobs1 (
+    -> job_id int primary key,
+    -> job_title varchar(10) not null,
+    -> max_salary INT CHECK (max_salary <= 25000));
+Q4.
+ans:mysql> create table job_history1(
+    -> employee_id int,
+    -> start_date date,
+    -> end_date date,
+    -> department_id int);
+
+Q5.
+ans:mysql> alter table countries
+    -> add unique key(country_id);
+Query OK, 0 rows affected (0.04 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc countries;
++--------------+-------------+------+-----+---------+-------+
+| Field        | Type        | Null | Key | Default | Extra |
++--------------+-------------+------+-----+---------+-------+
+| country_id   | int         | YES  | UNI | NULL    |       |
+| country_name | varchar(20) | YES  |     | NULL    |       |
+| region_id    | int         | YES  |     | NULL    |       |
++--------------+-------------+------+-----+---------+-------+
+
+Q6.
+ans:mysql> create table jobs_default(
+    -> job_id int,
+    -> job_title VARCHAR(50) DEFAULT '',
+    -> min_salary INT DEFAULT 8000,
+    -> max_salary INT DEFAULT NULL);
+Q7.
+ans:mysql> create table departments2(
+    -> department_id decimal not null,
+    -> department_name varchar(30) not null,
+    -> manager_id decimal(6,0)not null,
+    -> location_id decimal(4,0));
+Query OK, 0 rows affected (0.03 sec)
+Q8.
+ans:mysql> CREATE TABLE employees1 (
+    -> employee_id INT PRIMARY KEY,
+    -> first_name VARCHAR(50),
+    ->  last_name VARCHAR(50),
+    -> email VARCHAR(100),
+    -> phone_number VARCHAR(20),
+    ->  hire_date DATE,
+    -> job_id INT,
+    -> salary DECIMAL(10,2),
+    -> commission DECIMAL(10,2),
+    -> manager_id INT,
+    -> department_id decimal(10,0),
+    -> FOREIGN KEY (department_id) REFERENCES departments2(department_id));

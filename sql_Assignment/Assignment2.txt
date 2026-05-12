@@ -1,0 +1,82 @@
+(Q1.)
+ans:mysql> desc member;
++-------------------+---------------+------+-----+---------+-------+
+| Field             | Type          | Null | Key | Default | Extra |
++-------------------+---------------+------+-----+---------+-------+
+| member_id         | int           | YES  | UNI | NULL    |       |
+| memeber_name      | varchar(30)   | YES  |     | NULL    |       |
+| member_address    | varchar(50)   | YES  |     | NULL    |       |
+| account_open_date | date          | YES  |     | NULL    |       |
+| membership_type   | varchar(20)   | YES  |     | NULL    |       |
+| fees_paid         | decimal(10,2) | YES  |     | NULL    |       |
+| max_books_allowed | int           | YES  |     | NULL    |       |
+| penalty_amount    | decimal(10,2) | YES  |     | NULL    |       |
++-------------------+---------------+------+-----+---------+-------+
+8 rows in set (0.00 sec)
+
+mysql> create table books(
+    -> bookno int,
+    -> book_name varchar(30),
+    -> author_name varchar(30),
+    -> cost decimal(10,2),
+    -> category varchar(15));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> desc books;
++-------------+---------------+------+-----+---------+-------+
+| Field       | Type          | Null | Key | Default | Extra |
++-------------+---------------+------+-----+---------+-------+
+| bookno      | int           | YES  |     | NULL    |       |
+| book_name   | varchar(30)   | YES  |     | NULL    |       |
+| author_name | varchar(30)   | YES  |     | NULL    |       |
+| cost        | decimal(10,2) | YES  |     | NULL    |       |
+| category    | varchar(15)   | YES  |     | NULL    |       |
++-------------+---------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> create table issue(
+    -> lib_issue_id int,
+    -> book_no int,
+    -> member_id int,
+    -> issue_date date,
+    -> return_date date);
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> desc issue;
++--------------+------+------+-----+---------+-------+
+| Field        | Type | Null | Key | Default | Extra |
++--------------+------+------+-----+---------+-------+
+| lib_issue_id | int  | YES  |     | NULL    |       |
+| book_no      | int  | YES  |     | NULL    |       |
+| member_id    | int  | YES  |     | NULL    |       |
+| issue_date   | date | YES  |     | NULL    |       |
+| return_date  | date | YES  |     | NULL    |       |
++--------------+------+------+-----+---------+-------+
+
+(Q2.)
+ans:Q1
+
+(Q3.)
+ans:mysql> drop table member;
+Query OK, 0 rows affected (0.03 sec)
+(Q4.)
+ans:mysql> create table member(member_id int primary key,
+    -> member_name varchar(30),
+    -> membership_type varchar(20),
+    -> CONSTRAINT chk_membership_type     CHECK (Membership_Type IN ('Lifetime','Annual','Half Yearly','Quarterly')));
+Query OK, 0 rows affected (0.03 sec)
+
+(Q5.)
+ans:mysql> alter table member
+    -> modify member_name varchar(40);
+(Q6.)
+ans:mysql> alter table issue
+    -> add reference varchar(30);
+(Q7.)
+ans:mysql> alter table issue
+    -> drop column reference;
+(Q8.)
+ans:mysql> alter table issue
+    -> rename to Lib_Issue;
+(Q9.)
+ans:
